@@ -374,7 +374,7 @@ export default function Home() {
             >
                 <span className="font-black text-lg">SA</span>
                 <Link
-                    href={"/resume.pdf"}
+                    href={"/cv.pdf"}
                     target="_blank"
                     className="text-neutral-500 hover:text-white transition-all"
                 >
