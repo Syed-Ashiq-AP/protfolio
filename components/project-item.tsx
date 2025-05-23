@@ -202,13 +202,13 @@ const ProjectItem = ({
                         </h1>
                         <p className="text-sm lg:text-xl">{data.description}</p>
                         <div className="flex justify-evenly">
-                            <button className="font-medium rounded-lg border border-neutral-800 px-4 py-2 cursor-pointer hover:bg-neutral-800 transition-colors">
-                                {data.github && (
+                            {data.github && (
+                                <button className="font-medium rounded-lg border border-neutral-800 px-4 py-2 cursor-pointer hover:bg-neutral-800 transition-colors">
                                     <Link href={data.github} target="_blank">
                                         Github
                                     </Link>
-                                )}
-                            </button>
+                                </button>
+                            )}
                             {data.live && (
                                 <button className="font-medium rounded-lg border border-neutral-800 px-4 py-2 cursor-pointer hover:bg-neutral-800 transition-colors">
                                     <Link href={data.live} target="_blank">
