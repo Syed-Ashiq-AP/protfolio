@@ -486,6 +486,7 @@ export default function Home() {
                             title: "Al Hosn",
                             description:
                                 "A Python Web emulated app, inspired by the Al Hosn app, can function as a COVID-19 health status tracker. Users can check their test results, vaccination records, and receive notifications about potential exposure.",
+                            github: "https://github.com/Syed-Ashiq-AP/Al-Hosn",
                         }}
                         spring={{
                             translateY: [
@@ -505,6 +506,8 @@ export default function Home() {
                             imageAlt: "HTML Table",
                             imageUrl: "tgr",
                             title: "HTML Table",
+                            github: "https://github.com/Syed-Ashiq-AP/TableHTML",
+                            live: "https://table-html-lake.vercel.app/",
                             description:
                                 "A Table Generator that allows users to create tables with custom rows and columns. Users can add, remove, and edit rows and columns, as well as export the table as an image or HTML code.",
                         }}
@@ -529,6 +532,7 @@ export default function Home() {
                             imageAlt: "Web Engine",
                             imageUrl: "wer",
                             title: "Web Engine",
+                            live: "https://web-engine-wheat.vercel.app/",
                             description:
                                 "Easily build Websites from scratch with full customization including Styles, Animations, JS, etc. with a simple drag and drop interface.Users can also export the code and host it on their own servers.",
                         }}

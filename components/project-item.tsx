@@ -27,6 +27,8 @@ const ProjectItem = ({
         imageAlt: string;
         title: string;
         description: string;
+        github?: string;
+        live?: string;
     };
     scrollY: MotionValue<number>;
     spring: {
@@ -201,15 +203,19 @@ const ProjectItem = ({
                         <p className="text-sm lg:text-xl">{data.description}</p>
                         <div className="flex justify-evenly">
                             <button className="font-medium rounded-lg border border-neutral-800 px-4 py-2 cursor-pointer hover:bg-neutral-800 transition-colors">
-                                <Link href="#" target="_blank">
-                                    Github
-                                </Link>
+                                {data.github && (
+                                    <Link href={data.github} target="_blank">
+                                        Github
+                                    </Link>
+                                )}
                             </button>
-                            <button className="font-medium rounded-lg border border-neutral-800 px-4 py-2 cursor-pointer hover:bg-neutral-800 transition-colors">
-                                <Link href="#" target="_blank">
-                                    Live
-                                </Link>
-                            </button>
+                            {data.live && (
+                                <button className="font-medium rounded-lg border border-neutral-800 px-4 py-2 cursor-pointer hover:bg-neutral-800 transition-colors">
+                                    <Link href={data.live} target="_blank">
+                                        Live
+                                    </Link>
+                                </button>
+                            )}
                         </div>
                     </motion.div>
                 </motion.div>
