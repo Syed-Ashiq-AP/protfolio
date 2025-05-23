@@ -365,7 +365,7 @@ export default function Home() {
     });
 
     return (
-        <div className="relative flex flex-col items-stretch" ref={scope}>
+        <div className="dark relative flex flex-col items-stretch" ref={scope}>
             {/* NAVIGATION */}
             <motion.div
                 className={cn(
