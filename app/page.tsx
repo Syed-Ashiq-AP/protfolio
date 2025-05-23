@@ -14,6 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 import ProjectItem from "@/components/project-item";
 import Link from "next/link";
+import { springConfig } from "@/lib/configs";
 
 const aboutWord = [
     {
@@ -274,7 +275,6 @@ const aboutWord = [
         word: "line.",
     },
 ];
-export const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
 
 export default function Home() {
     const ref = React.useRef(null);

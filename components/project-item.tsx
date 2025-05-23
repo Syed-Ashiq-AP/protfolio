@@ -8,7 +8,7 @@ import {
     useTransform,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { springConfig } from "@/app/page";
+import { springConfig } from "@/lib/configs";
 import { ClassNameValue } from "tailwind-merge";
 import { useMediaQuery } from "usehooks-ts";
 import Link from "next/link";
