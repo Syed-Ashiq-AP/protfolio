@@ -68,7 +68,7 @@ const ProjectItem = ({
 
     useEffect(() => {
         const unsubscribe = translateY.on("change", (latest) => {
-            if (latest <= 800 && latest >= 100) setHideEvents(false);
+            if (latest <= 800 && latest >= 10) setHideEvents(false);
             else {
                 setHideEvents(true);
                 handleClose();
