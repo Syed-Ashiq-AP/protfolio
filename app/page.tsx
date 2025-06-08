@@ -16,6 +16,14 @@ import ProjectItem from "@/components/project-item";
 import Link from "next/link";
 import { springConfig } from "@/lib/configs";
 
+import Skill from "@/components/skill";
+import { RiJavascriptFill, RiNextjsFill } from "react-icons/ri";
+import { FaPython, FaReact } from "react-icons/fa";
+import Marquee from "@/components/marquee";
+import { BiLogoMongodb, BiLogoTypescript } from "react-icons/bi";
+import { IoLogoElectron } from "react-icons/io5";
+import { SiMysql } from "react-icons/si";
+
 const aboutWord = [
     {
         word: "I’m",
@@ -462,6 +470,22 @@ export default function Home() {
                     />
                 </motion.div>
             </div>
+            <Marquee>
+                <Skill
+                    icon={<RiJavascriptFill size={40} />}
+                    name={"JavaScript"}
+                />
+                <Skill
+                    icon={<BiLogoTypescript size={40} />}
+                    name={"TypeScript"}
+                />
+                <Skill icon={<FaPython size={40} />} name={"Python"} />
+                <Skill icon={<FaReact size={40} />} name={"React"} />
+                <Skill icon={<RiNextjsFill size={40} />} name={"Next.JS"} />
+                <Skill icon={<BiLogoMongodb size={40} />} name={"MongoDB"} />
+                <Skill icon={<IoLogoElectron size={40} />} name={"Electron"} />
+                <Skill icon={<SiMysql size={40} />} name={"My SQL"} />
+            </Marquee>
             {/* PROJECTS */}
             <div
                 ref={projectRef}
