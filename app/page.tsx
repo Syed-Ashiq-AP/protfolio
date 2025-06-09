@@ -17,12 +17,8 @@ import Link from "next/link";
 import { springConfig } from "@/lib/configs";
 
 import Skill from "@/components/skill";
-import { RiJavascriptFill, RiNextjsFill } from "react-icons/ri";
-import { FaPython, FaReact } from "react-icons/fa";
 import Marquee from "@/components/marquee";
-import { BiLogoMongodb, BiLogoTypescript } from "react-icons/bi";
-import { IoLogoElectron } from "react-icons/io5";
-import { SiMysql } from "react-icons/si";
+import skills from "@/components/skills";
 
 const aboutWord = [
     {
@@ -470,22 +466,21 @@ export default function Home() {
                     />
                 </motion.div>
             </div>
-            <Marquee>
-                <Skill
-                    icon={<RiJavascriptFill size={40} />}
-                    name={"JavaScript"}
-                />
-                <Skill
-                    icon={<BiLogoTypescript size={40} />}
-                    name={"TypeScript"}
-                />
-                <Skill icon={<FaPython size={40} />} name={"Python"} />
-                <Skill icon={<FaReact size={40} />} name={"React"} />
-                <Skill icon={<RiNextjsFill size={40} />} name={"Next.JS"} />
-                <Skill icon={<BiLogoMongodb size={40} />} name={"MongoDB"} />
-                <Skill icon={<IoLogoElectron size={40} />} name={"Electron"} />
-                <Skill icon={<SiMysql size={40} />} name={"My SQL"} />
-            </Marquee>
+            {/* SKILLS */}
+            <div>
+                <h2 className="flex text-2xl lg:text-4xl font-black justify-center py-5 lg:py-10">
+                    SKILLS
+                </h2>
+                <Marquee>
+                    {Object.entries(skills).map(([skill, icon], i) => (
+                        <Skill
+                            name={skill}
+                            icon={React.createElement(icon)}
+                            key={i}
+                        />
+                    ))}
+                </Marquee>
+            </div>
             {/* PROJECTS */}
             <div
                 ref={projectRef}
@@ -511,6 +506,9 @@ export default function Home() {
                             description:
                                 "A Python Web emulated app, inspired by the Al Hosn app, can function as a COVID-19 health status tracker. Users can check their test results, vaccination records, and receive notifications about potential exposure.",
                             github: "https://github.com/Syed-Ashiq-AP/Al-Hosn",
+                            frontEnd: ["HTML", "CSS", "JavaScript"],
+                            backEnd: ["Python"],
+                            database: ["MySQL"],
                         }}
                         spring={{
                             translateY: [
@@ -534,6 +532,7 @@ export default function Home() {
                             live: "https://table-html-lake.vercel.app/",
                             description:
                                 "A Table Generator that allows users to create tables with custom rows and columns. Users can add, remove, and edit rows and columns, as well as export the table as an image or HTML code.",
+                            frontEnd: ["Next.JS", "Tailwind CSS", "JavaScript"],
                         }}
                         spring={{
                             translateY: [
@@ -559,6 +558,9 @@ export default function Home() {
                             live: "https://web-engine-wheat.vercel.app/",
                             description:
                                 "Easily build Websites from scratch with full customization including Styles, Animations, JS, etc. with a simple drag and drop interface.Users can also export the code and host it on their own servers.",
+                            frontEnd: ["Next.JS", "Tailwind CSS", "TypeScript"],
+                            backEnd: ["Rest API"],
+                            database: ["MongoDB"],
                         }}
                         spring={{
                             translateY: [

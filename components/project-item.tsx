@@ -12,6 +12,12 @@ import { springConfig } from "@/lib/configs";
 import { ClassNameValue } from "tailwind-merge";
 import { useMediaQuery } from "usehooks-ts";
 import Link from "next/link";
+import skills from "./skills";
+import Skill from "./skill";
+import { datalist } from "framer-motion/client";
+import Marquee from "./marquee";
+
+type skillKeys = keyof typeof skills;
 
 const ProjectItem = ({
     style,
@@ -29,6 +35,9 @@ const ProjectItem = ({
         description: string;
         github?: string;
         live?: string;
+        frontEnd?: skillKeys[];
+        backEnd?: skillKeys[];
+        database?: skillKeys[];
     };
     scrollY: MotionValue<number>;
     spring: {
@@ -84,7 +93,7 @@ const ProjectItem = ({
             animate(
                 "div.mobile_animate",
                 {
-                    height: "500px",
+                    height: "600px",
                 },
                 {
                     duration: 0.3,
@@ -133,6 +142,31 @@ const ProjectItem = ({
         if (isMobileOpen) handleClose();
         else handleOpen();
     };
+
+    const frontEnd = data.frontEnd?.map((n, i) => (
+        <Skill
+            name={n}
+            icon={React.createElement(skills[n], { size: 20 })}
+            key={i}
+            className=" text-md border rounded-lg p-2"
+        />
+    ));
+    const backEnd = data.backEnd?.map((n, i) => (
+        <Skill
+            name={n}
+            icon={React.createElement(skills[n], { size: 20 })}
+            key={i}
+            className=" text-md border rounded-lg p-2"
+        />
+    ));
+    const database = data.database?.map((n, i) => (
+        <Skill
+            name={n}
+            icon={React.createElement(skills[n], { size: 20 })}
+            key={i}
+            className=" text-md border rounded-lg p-2"
+        />
+    ));
 
     return (
         <motion.div
@@ -196,7 +230,7 @@ const ProjectItem = ({
                         alt={data.imageAlt}
                         className="z-100 rounded-2xl w-full h-[250px] md:h-full object-cover overflow-hidden"
                     />
-                    <motion.div className="md:absolute md:left-[46%] -z-10 overflow-hidden  flex flex-col  gap-2 md:top-0 md:bottom-0 m-4 h-[250px] md:h-full">
+                    <motion.div className="md:absolute md:left-[46%] -z-10 overflow-hidden  flex flex-col  gap-2 md:top-0 md:bottom-0 m-4 h-[300px] md:h-full md:w-[50%]">
                         <h1 className=" text-4xl font-bold tracking-wider">
                             {data.title}
                         </h1>
@@ -216,6 +250,43 @@ const ProjectItem = ({
                                     </Link>
                                 </button>
                             )}
+                        </div>
+                        <div className="flex flex-col gap-4 p-4 overflow-hidden">
+                            <Marquee className={"m-0 lg:m-0"}>
+                                {frontEnd}
+                                {backEnd}
+                                {database}
+                            </Marquee>
+                            {/* {data.frontEnd && (
+                                <div className="flex flex-col gap-2">
+                                    <span className="text-sm font-bold">
+                                        Frontend:
+                                    </span>
+                                    <div className="flex flex-col md:flex-row gap-4">
+                                        {frontEnd}
+                                    </div>
+                                </div>
+                            )}
+                            {data.backEnd && (
+                                <div className="flex flex-col gap-2">
+                                    <span className="text-sm font-bold">
+                                        Backend:
+                                    </span>
+                                    <div className="flex flex-col md:flex-row gap-4">
+                                        {backEnd}
+                                    </div>
+                                </div>
+                            )}
+                            {data.database && (
+                                <div className="flex flex-col gap-2">
+                                    <span className="text-sm font-bold">
+                                        Database:
+                                    </span>
+                                    <div className="flex flex-col md:flex-row gap-4">
+                                        {database}
+                                    </div>
+                                </div>
+                            )} */}
                         </div>
                     </motion.div>
                 </motion.div>
