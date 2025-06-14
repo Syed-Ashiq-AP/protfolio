@@ -7,8 +7,6 @@ import {
     useSpring,
     useTransform,
     motion,
-    scale,
-    useMotionValue,
     useAnimate,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -556,6 +554,7 @@ export default function Home() {
                             imageUrl: "wer",
                             title: "Web Engine",
                             live: "https://web-engine-wheat.vercel.app/",
+                            github: "https://github.com/Syed-Ashiq-AP/web-engine-main",
                             description:
                                 "Easily build Websites from scratch with full customization including Styles, Animations, JS, etc. with a simple drag and drop interface.Users can also export the code and host it on their own servers.",
                             frontEnd: ["Next.JS", "Tailwind CSS", "TypeScript"],

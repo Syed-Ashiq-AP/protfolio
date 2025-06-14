@@ -257,36 +257,6 @@ const ProjectItem = ({
                                 {backEnd}
                                 {database}
                             </Marquee>
-                            {/* {data.frontEnd && (
-                                <div className="flex flex-col gap-2">
-                                    <span className="text-sm font-bold">
-                                        Frontend:
-                                    </span>
-                                    <div className="flex flex-col md:flex-row gap-4">
-                                        {frontEnd}
-                                    </div>
-                                </div>
-                            )}
-                            {data.backEnd && (
-                                <div className="flex flex-col gap-2">
-                                    <span className="text-sm font-bold">
-                                        Backend:
-                                    </span>
-                                    <div className="flex flex-col md:flex-row gap-4">
-                                        {backEnd}
-                                    </div>
-                                </div>
-                            )}
-                            {data.database && (
-                                <div className="flex flex-col gap-2">
-                                    <span className="text-sm font-bold">
-                                        Database:
-                                    </span>
-                                    <div className="flex flex-col md:flex-row gap-4">
-                                        {database}
-                                    </div>
-                                </div>
-                            )} */}
                         </div>
                     </motion.div>
                 </motion.div>
