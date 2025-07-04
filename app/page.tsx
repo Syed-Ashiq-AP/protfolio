@@ -585,7 +585,7 @@ export default function Home() {
                             live: "https://career-consultant.vercel.app/",
                             github: "https://github.com/Syed-Ashiq-AP/career",
                             description:
-                                "Easily build Websites from scratch with full customization including Styles, Animations, JS, etc. with a simple drag and drop interface.Users can also export the code and host it on their own servers.",
+                                "AI-powered career guidance, college information, course details, and educational content for students in India 2025",
                             frontEnd: ["Next.JS", "Tailwind CSS", "TypeScript"],
                             backEnd: ["Rest API"],
                             database: ["MongoDB"],
