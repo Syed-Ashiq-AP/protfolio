@@ -482,7 +482,7 @@ export default function Home() {
             {/* PROJECTS */}
             <div
                 ref={projectRef}
-                className="flex relative h-[300vh] shrink-0 transform flex-col items-stretch justify-start py-0 [perspective:800px] md:scale-100 md:py-80 mb-[500px]"
+                className="flex relative h-[600vh] shrink-0 transform flex-col items-stretch justify-start py-0 [perspective:800px] md:scale-100 md:py-80 mb-[500px]"
             >
                 <motion.div className="xl:mx-46 sticky top-[10%] flex flex-col items-center">
                     <TypeWriterSmooth
@@ -510,12 +510,12 @@ export default function Home() {
                         }}
                         spring={{
                             translateY: [
-                                [0, 0.4],
+                                [0, 0.1],
                                 [1000, 0],
                             ],
                             scale: [
-                                [0.25, 0.5],
-                                [1, 0.8],
+                                [0.1, 0.2, 0.31, 0.39, 0.51, 0.59, 0.71, 0.79],
+                                [1, 0.9, 0.9, 0.85, 0.85, 0.8, 0.8, 0.75],
                             ],
                             opacity: [[0], [1]],
                         }}
@@ -534,15 +534,15 @@ export default function Home() {
                         }}
                         spring={{
                             translateY: [
-                                [0.3, 0.6],
+                                [0.2, 0.3],
                                 [1000, 50],
                             ],
                             scale: [
-                                [0.55, 0.6],
-                                [1, 0.85],
+                                [0.3, 0.4, 0.51, 0.59, 0.71, 0.79],
+                                [1, 0.9, 0.9, 0.85, 0.85, 0.8],
                             ],
                             opacity: [
-                                [0.33, 0.36],
+                                [0.13, 0.16],
                                 [0, 1],
                             ],
                         }}
@@ -563,11 +563,40 @@ export default function Home() {
                         }}
                         spring={{
                             translateY: [
-                                [0.5, 0.7],
+                                [0.4, 0.5],
                                 [1200, 100],
                             ],
                             scale: [
-                                [0.65, 0.7],
+                                [0.5, 0.6, 0.71, 0.79],
+                                [1, 0.9, 0.9, 0.85],
+                            ],
+                            opacity: [
+                                [0.33, 0.36],
+                                [0, 1],
+                            ],
+                        }}
+                        scrollY={scrollYProject}
+                    />
+                    <ProjectItem
+                        data={{
+                            imageAlt: "Career Consultant",
+                            imageUrl: "cc",
+                            title: "Career Consultant",
+                            live: "https://career-consultant.vercel.app/",
+                            github: "https://github.com/Syed-Ashiq-AP/career",
+                            description:
+                                "Easily build Websites from scratch with full customization including Styles, Animations, JS, etc. with a simple drag and drop interface.Users can also export the code and host it on their own servers.",
+                            frontEnd: ["Next.JS", "Tailwind CSS", "TypeScript"],
+                            backEnd: ["Rest API"],
+                            database: ["MongoDB"],
+                        }}
+                        spring={{
+                            translateY: [
+                                [0.6, 0.7],
+                                [1300, 150],
+                            ],
+                            scale: [
+                                [0.7, 0.8],
                                 [1, 0.9],
                             ],
                             opacity: [
