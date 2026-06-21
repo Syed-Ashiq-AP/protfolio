@@ -42,7 +42,7 @@ const Project = ({
   }, [title]);
 
   return (
-    <div className="flex items-center justify-center sticky top-40 md:top-50 mb-40">
+    <div className="flex items-center justify-center sticky top-45 md:top-50 mb-40">
       <div
         className="border border-border/1 bg-card  rounded-xl shadow-md flex flex-col-reverse md:grid md:grid-cols-[1fr_60%] w-full overflow-hidden "
         ref={project}
@@ -97,7 +97,7 @@ const Project = ({
             src={imageURL}
             width={1000}
             height={1000}
-            className="w-full aspect-3/2 md:aspect-auto md:h-full rounded-md"
+            className="w-full aspect-4/2 md:aspect-auto md:h-full rounded-md"
             alt={title}
           />
         </div>
