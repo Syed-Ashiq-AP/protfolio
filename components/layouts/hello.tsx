@@ -35,8 +35,8 @@ const Hello = () => {
     const secondNextWidth =
       secondContainer.children[(i + 1) % total].getBoundingClientRect().width;
 
-    const from = firstWidth + secondCurrentWidth;
-    const to = firstWidth + secondNextWidth;
+    const from = firstWidth + secondCurrentWidth + 10;
+    const to = firstWidth + secondNextWidth + 10;
 
     animate(container, { width: [`${from}px`, `${to}px`], duration: 150 });
   };
@@ -106,7 +106,7 @@ const Hello = () => {
 
   return (
     <div
-      className="flex flex-col space-y-2 justify-center items-center h-screen"
+      className="flex flex-col space-y-2 justify-center items-center h-screen overflow-x-hidden"
       id="hello"
     >
       <div
