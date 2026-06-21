@@ -107,7 +107,10 @@ const Hello = () => {
       className="flex flex-col space-y-2 justify-center items-center h-screen"
       id="hello"
     >
-      <div className="font-wide flex space-x-2" ref={slideContainer}>
+      <div
+        className="font-wide flex space-x-2 text-xs md:text-base"
+        ref={slideContainer}
+      >
         <span>FULL-STACK DEVELOPER </span>
         <span className=" text-center justify-center pl-2 relative block text-blue-200">
           <span
@@ -138,14 +141,14 @@ const Hello = () => {
       </div>
 
       <h1
-        className="font-bold uppercase text-8xl bg-linear-60 from-40% from-blue-200 to-white bg-clip-text text-transparent"
+        className="font-bold uppercase text-8xl text-center bg-linear-60 from-40% from-blue-200 to-white bg-clip-text text-transparent"
         style={{ marginTop: "150px", opacity: 0 }}
         id="name"
       >
         Syed Ashiq
       </h1>
       <span
-        className="max-w-150 text-center text-gray-400"
+        className="max-w-150 text-center text-gray-400 text-sm md:text-base mx-10"
         id="about"
         style={{ marginTop: "50px", opacity: 0 }}
       >

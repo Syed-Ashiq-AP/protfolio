@@ -69,11 +69,11 @@ const Header = () => {
       id="nav"
       style={{ top: "-85px", opacity: 0 }}
     >
-      <div>
+      <div className="hidden md:block">
         <Logo />
       </div>
       <nav className="rounded-full border bg-white/1 backdrop-blur-lg px-12 pt-1 absolute top-4 w-min mx-auto left-0 right-0">
-        <ul className=" flex space-x-22 items-center justify-center p-2">
+        <ul className=" flex space-x-12 md:space-x-22 items-center justify-center p-2 text-sm md:text-base">
           {menu.map((item, i) => (
             <li
               className=" cursor-pointer"
@@ -91,7 +91,7 @@ const Header = () => {
           ))}
         </ul>
       </nav>
-      <div className="flex space-x-4">
+      <div className=" space-x-4 hidden md:flex">
         <Social
           icon={TbBrandGithubFilled}
           link="https://github.com/Syed-Ashiq-AP"

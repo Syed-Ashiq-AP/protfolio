@@ -53,7 +53,7 @@ const Tech = ({ tech }: { tech: keyof typeof Techs }) => {
 
   return (
     <div className="text-gray-400 flex flex-col items-center text-center space-y-2">
-      <Icon size={24} />
+      <Icon className="size-4 md:size-8" />
       <span className="text-sm">{label}</span>
     </div>
   );
