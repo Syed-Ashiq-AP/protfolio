@@ -51,11 +51,11 @@
 
 @layer base{
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 cursor-none hover:cursor-none;
   }
   
   body {
-    @apply bg-background text-foreground font-normal flex flex-col items-stretch;
+    @apply bg-background text-foreground font-normal flex flex-col items-stretch **:cursor-none! **:[@media(hover:none)]:cursor-auto!;
   }
   
 }

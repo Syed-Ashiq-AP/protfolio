@@ -23,9 +23,10 @@ const Project = ({
   stack: (keyof typeof Techs)[];
 }) => {
   const project = useRef<HTMLDivElement>(null);
+  const image = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    if (!title) return;
+    if (!image.current) return;
     if (!project.current) return;
 
     animate(project.current, {
@@ -39,15 +40,24 @@ const Project = ({
         // debug: true,
       }),
     });
-  }, [title]);
+    animate(image.current, {
+      translateX: [200, 0],
+      ease: "linear",
+      autoplay: onScroll({
+        enter: "bottom top",
+        leave: "top-=20 top",
+        sync: 0.25,
+      }),
+    });
+  }, []);
 
   return (
-    <div className="flex items-center justify-center sticky top-45 md:top-50 mb-40">
+    <div className="flex items-center justify-center sticky top-40 md:top-50 mb-40">
       <div
-        className="border border-border/1 bg-card  rounded-xl shadow-md flex flex-col-reverse md:grid md:grid-cols-[1fr_60%] w-full overflow-hidden "
+        className="border border-border/1 bg-card  rounded-xl shadow-md flex flex-col-reverse md:grid md:grid-cols-[1fr_60%] overflow-hidden h-[min(80vh,780px)] w-[min(92vw,1360px)]"
         ref={project}
       >
-        <div className="flex flex-col p-4 md:p-12 justify-between space-y-8 ">
+        <div className="flex flex-col p-4 md:p-12 justify-between space-y-8 flex-1">
           <div className=" flex flex-col space-y-4 h-full">
             <h3 className="font-bold text-xl md:text-2xl tracking-wider">
               {title}
@@ -72,32 +82,34 @@ const Project = ({
                 <Link
                   target="_blank"
                   href={source}
-                  className="flex items-end space-x-2 text-gray-500 hover:text-white transition-all"
+                  className="flex items-end gap-2 text-gray-500 hover:text-white transition-all"
                 >
                   <IoIosReturnRight size={28} />
-                  <span>Source Code</span>
+                  Source Code
                 </Link>
               )}
               {live && (
                 <Link
                   target="_blank"
                   href={live}
-                  className="flex items-end space-x-2 text-gray-500 hover:text-white transition-all"
+                  className="flex items-end gap-2 text-gray-500 hover:text-white transition-all"
                 >
                   <IoIosReturnRight size={28} />
-                  <span>Live Preview</span>
+                  Live Preview
                 </Link>
               )}
             </div>
           </div>
         </div>
 
-        <div className="bg-background flex items-center justify-center p-2 overflow-hidden flex-1">
+        <div className="bg-background flex items-center justify-center p-4 overflow-hidden relative h-60 md:h-full">
           <Image
             src={imageURL}
+            ref={image}
             width={1000}
+            loading="eager"
             height={1000}
-            className="w-full aspect-4/2 md:aspect-auto md:h-full rounded-md"
+            className=" rounded-md object-cover absolute scale-200"
             alt={title}
           />
         </div>

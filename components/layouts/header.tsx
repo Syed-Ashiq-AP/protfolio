@@ -53,6 +53,31 @@ const Header = () => {
     didMount.current = true;
   }, []);
 
+  const scrollTo = (i: number) => {
+    switch (i) {
+      case 0:
+        const hello = document.getElementById("hello");
+        console.log(hello);
+        animate(document.documentElement, {
+          scrollTop: hello?.offsetTop,
+          duration: 1000,
+          ease: "inOutExpo",
+        });
+        break;
+      case 1:
+        const projects = document.getElementById("projects");
+        animate(document.documentElement, {
+          scrollTop: projects?.offsetTop,
+          duration: 1000,
+          ease: "inOutExpo",
+        });
+        break;
+
+      default:
+        break;
+    }
+  };
+
   useEffect(() => {
     if (projectsInView) {
       enableUnderline(1);
@@ -79,10 +104,17 @@ const Header = () => {
               className=" cursor-pointer"
               key={item}
               onMouseEnter={() => {
+                if ((i == 0 && helloInView) || (i == 1 && projectsInView))
+                  return;
                 enableUnderline(i);
               }}
               onMouseLeave={() => {
+                if ((i == 0 && helloInView) || (i == 1 && projectsInView))
+                  return;
                 disableUnderline(i);
+              }}
+              onClick={() => {
+                scrollTo(i);
               }}
             >
               {item}

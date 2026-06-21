@@ -46,8 +46,10 @@ const Hello = () => {
 
     const animateIt = (chars: HTMLElement[][]) => {
       const total = chars.length;
-      show(chars[0]);
-      animateWidth(3, chars.length);
+      setTimeout(() => {
+        show(chars[0]);
+      }, 500);
+      animateWidth(3, total);
       const doThis = (i: number) => {
         hide(chars[i]);
 
@@ -147,14 +149,14 @@ const Hello = () => {
       >
         Syed Ashiq
       </h1>
-      <span
+      <p
         className="max-w-150 text-center text-gray-400 text-sm md:text-base mx-10"
         id="about"
         style={{ marginTop: "50px", opacity: 0 }}
       >
         I build modern web applications and AI-driven products, combining clean
         design, robust engineering, and user-focused experiences.
-      </span>
+      </p>
     </div>
   );
 };

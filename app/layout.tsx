@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layouts/header";
 import Footer from "@/components/layouts/footer";
+import Cursor from "@/components/ui/cursor";
 
 export const metadata: Metadata = {
   title: "Syed Ashiq | Portfolio",
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <Cursor />
         <Header />
         {children}
         <Footer />
