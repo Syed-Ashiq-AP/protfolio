@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
+
+@font-face {
+	font-family: 'Roc Grotesk';
+	font-display: auto;
+	src: url('/fonts/400.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'Roc Grotesk Bold';
+	font-display: auto;
+	src: url('/fonts/bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+@font-face {
+	font-family: 'Roc Grotesk Wide';
+	font-display: auto;
+	src: url('/fonts/wide.otf') format('opentype');
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-roc-nomarl:'Roc Grotesk', sans-serif;
+  --font-roc-bold:'Roc Grotesk Bold', sans-serif;
+  --font-roc-wide:'Roc Grotesk Wide', sans-serif;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --ring: oklch(0.556 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --card: oklch(0.205 0 0);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-normal: var(--font-roc-nomarl);
+  --font-bold: var(--font-roc-bold);
+  --font-wide: var(--font-roc-wide);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome and Safari */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base{
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-normal flex flex-col items-stretch;
+  }
+  
 }
