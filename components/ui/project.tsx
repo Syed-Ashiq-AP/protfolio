@@ -66,6 +66,7 @@ const Project = ({
             <div className="flex justify-between">
               {source && (
                 <Link
+                  target="_blank"
                   href={source}
                   className="flex items-end space-x-2 text-gray-500 hover:text-white transition-all"
                 >
@@ -75,6 +76,7 @@ const Project = ({
               )}
               {live && (
                 <Link
+                  target="_blank"
                   href={live}
                   className="flex items-end space-x-2 text-gray-500 hover:text-white transition-all"
                 >

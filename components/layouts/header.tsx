@@ -65,7 +65,7 @@ const Header = () => {
 
   return (
     <div
-      className="h-22 flex justify-between p-5 fixed w-full z-100"
+      className="h-22 flex justify-between p-5 fixed w-full z-1000"
       id="nav"
       style={{ top: "-85px", opacity: 0 }}
     >
