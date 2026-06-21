@@ -41,7 +41,7 @@ const Project = ({
       }),
     });
     animate(image.current, {
-      translateX: [200, 0],
+      translateX: [image.current.getBoundingClientRect().left + 100, 0],
       ease: "linear",
       autoplay: onScroll({
         enter: "bottom top",
@@ -102,16 +102,17 @@ const Project = ({
           </div>
         </div>
 
-        <div className="bg-background flex items-center justify-center p-4 overflow-hidden relative h-60 md:h-full">
-          <Image
-            src={imageURL}
-            ref={image}
-            width={1000}
-            loading="eager"
-            height={1000}
-            className=" rounded-md object-cover absolute scale-200"
-            alt={title}
-          />
+        <div className="bg-background flex items-center justify-center overflow-hidden rounded-md  m-4 relative">
+          <div className="md:absolute w-dvw h-[min(80vh,780px)]" ref={image}>
+            <Image
+              src={imageURL}
+              width={3899}
+              loading="eager"
+              height={2208}
+              className=" object-contain md:object-cover h-full"
+              alt={title}
+            />
+          </div>
         </div>
       </div>
     </div>
