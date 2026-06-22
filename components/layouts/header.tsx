@@ -6,7 +6,7 @@ import Social from "../ui/social";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 
-const menu = ["Hello!", "Projects"];
+const menu = ["Hello!", "Projects", "Expertise", "Services"];
 
 const Header = () => {
   const enableUnderline = (i: number) => {
@@ -24,8 +24,13 @@ const Header = () => {
   };
   const ObserverHello = useRef<ScrollObserver>(null);
   const ObserverProjects = useRef<ScrollObserver>(null);
+  const ObserverSkills = useRef<ScrollObserver>(null);
+  const ObserverServices = useRef<ScrollObserver>(null);
+
   const [helloInView, setHelloInView] = useState(false);
   const [projectsInView, setProjectsInView] = useState(false);
+  const [skillsInView, setSkillsInView] = useState(false);
+  const [servicessInView, setServicesInView] = useState(false);
 
   const didMount = useRef(false);
   useEffect(() => {
@@ -36,8 +41,6 @@ const Header = () => {
       duration: 1000,
     });
 
-    ObserverHello.current = onScroll({ container: "#hello" });
-    ObserverProjects.current = onScroll({ container: "#projects" });
     ObserverHello.current = onScroll({
       target: "#hello",
       onEnter: () => setHelloInView(true),
@@ -48,6 +51,16 @@ const Header = () => {
       target: "#projects",
       onEnter: () => setProjectsInView(true),
       onLeave: () => setProjectsInView(false),
+    });
+    ObserverSkills.current = onScroll({
+      target: "#skills",
+      onEnter: () => setSkillsInView(true),
+      onLeave: () => setSkillsInView(false),
+    });
+    ObserverServices.current = onScroll({
+      target: "#services",
+      onEnter: () => setServicesInView(true),
+      onLeave: () => setServicesInView(false),
     });
 
     didMount.current = true;
@@ -72,6 +85,22 @@ const Header = () => {
           ease: "inOutExpo",
         });
         break;
+      case 2:
+        const skills = document.getElementById("skills");
+        animate(document.documentElement, {
+          scrollTop: skills?.offsetTop,
+          duration: 1000,
+          ease: "inOutExpo",
+        });
+        break;
+      case 3:
+        const services = document.getElementById("services");
+        animate(document.documentElement, {
+          scrollTop: services?.offsetTop,
+          duration: 1000,
+          ease: "inOutExpo",
+        });
+        break;
 
       default:
         break;
@@ -82,11 +111,25 @@ const Header = () => {
     if (projectsInView) {
       enableUnderline(1);
       disableUnderline(0);
+      disableUnderline(2);
+      disableUnderline(3);
     } else if (helloInView) {
       enableUnderline(0);
       disableUnderline(1);
+      disableUnderline(2);
+      disableUnderline(3);
+    } else if (skillsInView) {
+      enableUnderline(2);
+      disableUnderline(1);
+      disableUnderline(0);
+      disableUnderline(3);
+    } else if (servicessInView) {
+      enableUnderline(3);
+      disableUnderline(1);
+      disableUnderline(2);
+      disableUnderline(0);
     }
-  }, [helloInView, projectsInView]);
+  }, [helloInView, projectsInView, skillsInView, servicessInView]);
 
   return (
     <div
@@ -97,19 +140,29 @@ const Header = () => {
       <div className="hidden md:block">
         <Logo />
       </div>
-      <nav className="rounded-full border bg-white/1 backdrop-blur-lg px-12 pt-1 absolute top-4 w-min mx-auto left-0 right-0">
+      <nav className="hidden md:block rounded-full border bg-white/1 backdrop-blur-lg px-12 pt-1 absolute top-4 w-min mx-auto left-0 right-0">
         <ul className=" flex space-x-12 md:space-x-22 items-center justify-center p-2 text-sm md:text-base">
           {menu.map((item, i) => (
             <li
               className=" cursor-pointer"
               key={item}
               onMouseEnter={() => {
-                if ((i == 0 && helloInView) || (i == 1 && projectsInView))
+                if (
+                  (i == 0 && helloInView) ||
+                  (i == 1 && projectsInView) ||
+                  (i == 2 && skillsInView) ||
+                  (i == 3 && servicessInView)
+                )
                   return;
                 enableUnderline(i);
               }}
               onMouseLeave={() => {
-                if ((i == 0 && helloInView) || (i == 1 && projectsInView))
+                if (
+                  (i == 0 && helloInView) ||
+                  (i == 1 && projectsInView) ||
+                  (i == 2 && skillsInView) ||
+                  (i == 3 && servicessInView)
+                )
                   return;
                 disableUnderline(i);
               }}

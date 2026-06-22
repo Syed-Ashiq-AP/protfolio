@@ -1,26 +1,10 @@
 "use client";
+import { hide, show } from "@/lib/utils";
 import { animate, splitText, stagger } from "animejs";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const Hello = () => {
   const slideContainer = useRef(null);
-  const show = (chars: HTMLElement[]) => {
-    animate(chars, {
-      opacity: [0, 1],
-      rotateX: [90, 0],
-      delay: stagger(50),
-      ease: "inOutCirc",
-    });
-  };
-
-  const hide = (chars: HTMLElement[]) => {
-    animate(chars, {
-      opacity: [1, 0],
-      rotateX: [0, 90],
-      delay: stagger(50),
-      ease: "inOutCirc",
-    });
-  };
 
   const didMount = useRef(false);
 
