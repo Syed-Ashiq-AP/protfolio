@@ -105,7 +105,7 @@ const Tech = ({
   big = false,
 }: {
   tech: keyof typeof Techs;
-  big: boolean;
+  big?: boolean;
 }) => {
   const { icon: Icon, label } = Techs[tech];
 
