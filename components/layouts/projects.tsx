@@ -5,7 +5,7 @@ import Project from "../ui/project";
 const Projects = () => {
   return (
     <div className="flex flex-col space-y-2 mx-5 xl:mx-70 my-20" id="projects">
-      <h2 className="font-wide text-xl md:text-3xl sticky top-25 z-10 text-center md:text-left">
+      <h2 className="font-wide text-xl md:text-3xl sticky top-5 md:top-25 z-10 text-center md:text-left">
         Featured <span className="text-blue-200">Projects</span>
       </h2>
       <div className="h-auto mt-10 md:mt-90 space-y-90">

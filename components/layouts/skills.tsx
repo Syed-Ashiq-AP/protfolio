@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Tech, { Techs } from "../tech";
+import Tech, { Techs } from "../ui/tech";
 import { animate, onScroll, splitText } from "animejs";
 import { hide, show } from "@/lib/utils";
 import { useMediaQuery } from "react-responsive";
@@ -29,7 +29,7 @@ const Skills = () => {
 
   useEffect(() => {
     if (didMount.current) return;
-    const slidePosition = [0, 65, 130];
+    const slidePosition = [0, 80, 160];
 
     const slide = (slides: [number, HTMLDivElement][]) => {
       slides.forEach(([pos, slide]) => {
@@ -65,7 +65,8 @@ const Skills = () => {
         container: ".body",
         target: "#skills",
         enter: "bottom-=150 top+=150",
-        leave: "top+=150 top+=33.3%",
+        leave: "top+=150 top+=30%",
+        // debug: true,
         sync: true,
         onEnter: () => setCurrentTech(0),
         onEnterBackward: () => {
@@ -82,7 +83,8 @@ const Skills = () => {
         container: ".body",
         target: "#skills",
         enter: "bottom-=150 top+=33.3%",
-        leave: "top+=150 bottom-=33.3%",
+        leave: "top+=150 bottom-=30%",
+        // debug: true,
         sync: true,
         onEnter: () => setCurrentTech(1),
         onEnterForward: () => {
@@ -108,6 +110,7 @@ const Skills = () => {
         target: "#skills",
         enter: "bottom-=150 bottom-=33.3%",
         leave: "top+=150 bottom",
+        // debug: true,
         sync: true,
         onEnter: () => setCurrentTech(2),
         onEnterForward: () => {
@@ -151,7 +154,7 @@ const Skills = () => {
 
   return (
     <div
-      className="flex flex-col space-y-2 mx-5 xl:mx-70 my-20 relative h-[600dvh]"
+      className="flex flex-col space-y-2 mx-5 xl:mx-70 my-20 relative h-[375dvh] md:h-[300dvh]"
       id="skills"
     >
       <h2 className="font-wide text-xl md:text-3xl sticky top-25 z-10 text-center md:text-left my-12">
@@ -179,7 +182,7 @@ const Skills = () => {
           </span>
         </h3>
 
-        <div className="flex flex-col items-stretch w-full h-17 overflow-hidden space-y-4 px-10">
+        <div className="flex flex-col items-stretch w-full h-20 overflow-hidden space-y-4 px-10">
           <div className="flex-wrap flex justify-between" ref={frontRef}>
             {front.map((t) => (
               <Tech tech={t as keyof typeof Techs} key={t} big={isMobile} />

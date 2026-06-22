@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { FaReact } from "react-icons/fa6";
 import { IoIosReturnRight } from "react-icons/io";
-import Tech, { Techs } from "../tech";
+import Tech, { Techs } from "./tech";
 
 const Project = ({
   title,
@@ -37,11 +37,10 @@ const Project = ({
         enter: "top top",
         leave: "top-=20 top",
         sync: 0.25,
-        // debug: true,
       }),
     });
     animate(image.current, {
-      translateX: [image.current.getBoundingClientRect().left + 100, 0],
+      translateX: [image.current.getBoundingClientRect().width / 4, 0],
       ease: "linear",
       autoplay: onScroll({
         enter: "bottom top",
@@ -52,7 +51,7 @@ const Project = ({
   }, []);
 
   return (
-    <div className="flex items-center justify-center sticky top-40 md:top-50 mb-40">
+    <div className="flex items-center justify-center sticky top-20 md:top-50 mb-40">
       <div
         className="border border-border/1 bg-card  rounded-xl shadow-md flex flex-col-reverse md:grid md:grid-cols-[1fr_60%] overflow-hidden h-[min(80vh,780px)] w-[min(92vw,1360px)]"
         ref={project}
@@ -62,7 +61,7 @@ const Project = ({
             <h3 className="font-bold text-xl md:text-2xl tracking-wider">
               {title}
             </h3>
-            <span className="text-gray-400 whitespace-pre-wrap leading-5.5 md:leading-7 text-sm md:text-base">
+            <span className="text-gray-400 whitespace-pre-wrap leading-5.5 md:leading-7 text-sm md:text-base hidden md:inline">
               {description}
             </span>
           </div>
@@ -103,13 +102,13 @@ const Project = ({
         </div>
 
         <div className="bg-background flex items-center justify-center overflow-hidden rounded-md  m-4 relative">
-          <div className="md:absolute w-dvw h-[min(80vh,780px)]" ref={image}>
+          <div className="h-[70vh] md:h-[90vh] aspect-video" ref={image}>
             <Image
               src={imageURL}
-              width={3899}
+              width={2800}
               loading="eager"
-              height={2208}
-              className=" object-contain md:object-cover h-full"
+              height={1575}
+              className="aspect-video h-full"
               alt={title}
             />
           </div>
