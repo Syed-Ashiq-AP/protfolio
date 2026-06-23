@@ -23,11 +23,13 @@
   --font-roc-nomarl: var(--font-sans);
   --font-roc-black: var(--font-sans);
   --font-roc-wide: var(--font-sans);
-  --background: oklch(0.135 0.012 245);
+  --background: #0b0c10;
   --foreground: oklch(0.985 0 0);
   --ring: oklch(0.72 0.13 220);
   --border: oklch(1 0 0 / 12%);
   --card: oklch(0.205 0.018 245);
+  --line: #1e222d;
+  --line-bright: #2a2f3d;
 }
 
 @theme inline {
@@ -35,7 +37,9 @@
   --color-foreground: var(--foreground);
   --font-normal: var(--font-roc-nomarl);
   --font-black: var(--font-roc-black);
+  --color-line: var(--line);
   --font-wide: var(--font-roc-wide);
+  --color-line-bright: var(--line-bright);
   --color-border: var(--border);
   --color-ring: var(--ring);
   --color-card: var(--card);
@@ -68,9 +72,19 @@
   html {
     @apply scroll-smooth;
   }
-
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      #000 30%,
+      transparent 80%
+    );
+  }
   body {
-    @apply text-foreground font-normal flex flex-col items-stretch bg-no-repeat bg-fixed bg-cover bg-(image:--background-glow);
+    @apply text-foreground font-normal flex flex-col items-stretch bg-background;
   }
   .mono-label {
     font-family: var(--font-mono);
