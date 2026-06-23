@@ -1,183 +1,68 @@
 "use client";
-import { hide, show } from "@/lib/utils";
-import { animate, onScroll, splitText, stagger } from "animejs";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { animate, stagger } from "animejs";
+import Link from "next/link";
+import React, { useEffect, useRef } from "react";
+import { FiArrowDownRight } from "react-icons/fi";
+import { IoIosReturnRight } from "react-icons/io";
 
 const Hello = () => {
-  const slideContainer = useRef(null);
-
   const didMount = useRef(false);
-
-  const animateWidth = (i: number, total: number) => {
-    if (!slideContainer.current) return;
-    const container = slideContainer.current as HTMLDivElement;
-
-    const firstWidth = container.children[0].getBoundingClientRect().width;
-    const secondContainer = container.children[1];
-    const secondCurrentWidth =
-      secondContainer.children[i].getBoundingClientRect().width;
-    const secondNextWidth =
-      secondContainer.children[(i + 1) % total].getBoundingClientRect().width;
-
-    const from = firstWidth + secondCurrentWidth + 10;
-    const to = firstWidth + secondNextWidth + 10;
-
-    animate(container, { width: [`${from}px`, `${to}px`], duration: 150 });
-  };
 
   useEffect(() => {
     if (didMount.current) return;
-
-    const animateIt = (chars: HTMLElement[][]) => {
-      const total = chars.length;
-      setTimeout(() => {
-        show(chars[0]);
-      }, 500);
-      animateWidth(3, total);
-      const doThis = (i: number) => {
-        hide(chars[i]);
-
-        i = (i + 1) % total;
-
-        show(chars[i]);
-        return i;
-      };
-      let current = 0;
-
-      setInterval(() => {
-        animateWidth(current, total);
-        current = doThis(current);
-      }, 3500);
-    };
-    const setUp = () => {
-      const chars: HTMLElement[][] = [];
-      Array.from({ length: 4 }).forEach((_, i) => {
-        const { chars: slog } = splitText(`#slogan-${i}`, {
-          words: false,
-          chars: true,
-          includeSpaces: true,
-        });
-
-        chars.push(slog);
-
-        slog.forEach((element: HTMLElement) => {
-          element.classList.add("opacity-0");
-          element.style.transform = "rotateX(90deg)";
-        });
-        document.getElementById(`slogan-${i}`)?.classList.remove("hidden");
-        document.getElementById(`slogan-${i}`)?.classList.remove("opacity-0");
-        document.getElementById(`slogan-${i}`)?.classList.add("block");
-      });
-
-      animateIt(chars);
-    };
-
-    setUp();
-
-    animate("#name", {
-      marginTop: ["150px", 0],
+    animate(".hero-reveal", {
+      translateY: [28, 0],
       opacity: [0, 1],
-      duration: 1500,
-    });
-    animate("#about", {
-      marginTop: ["50px", 0],
-      opacity: [0, 1],
-      duration: 1500,
-    });
-
-    animate(["#name", slideContainer.current], {
-      marginTop: [0, "150px"],
-      opacity: [1, 0],
-      ease: "ease",
-      autoplay: onScroll({
-        target: "#hello-scroll",
-        enter: "top top+=10%",
-        leave: "top top+=25%",
-        sync: true,
-      }),
-    });
-
-    animate("#about", {
-      marginTop: [0, "50px"],
-      opacity: [1, 0],
-      ease: "ease",
-      autoplay: onScroll({
-        target: "#hello-scroll",
-        enter: "top top+=10%",
-        leave: "top top+=25%",
-        sync: true,
-        onLeaveForward: () => {
-          setTimeout(() => {
-            const skills = document.getElementById("skills");
-            animate(document.documentElement, {
-              scrollTop: skills?.offsetTop,
-              duration: 1000,
-              ease: "inOutExpo",
-            });
-          }, 200);
-        },
-      }),
+      delay: stagger(90),
+      duration: 900,
+      ease: "outExpo",
     });
 
     didMount.current = true;
   }, []);
 
   return (
-    <div className=" relative top-0 h-screen" id="hello">
-      <div
-        className="flex flex-col space-y-2 justify-center items-center sticky top-0 left-0 right-0 mx-auto h-screen overflow-x-hidden"
-        id="hello-scroll"
-      >
-        <div
-          className="font-wide flex space-x-2 text-xs md:text-base"
-          ref={slideContainer}
-        >
-          <span>FULL-STACK DEVELOPER </span>
-          <span className=" text-center justify-center pl-2 relative block text-blue-200">
-            <span
-              className=" transition-all absolute left-0 top-0 w-max opacity-0"
-              id="slogan-0"
-            >
-              & UI/UX
-            </span>
-            <span
-              className=" transition-all absolute left-0 top-0 w-max opacity-0"
-              id="slogan-1"
-            >
-              & WEB APPS
-            </span>
-            <span
-              className=" transition-all absolute left-0 top-0 w-max opacity-0"
-              id="slogan-2"
-            >
-              & AI PRODUCTS
-            </span>
-            <span
-              className=" transition-all absolute left-0 top-0 w-max opacity-0"
-              id="slogan-3"
-            >
-              & MOTION DESIGN
-            </span>
-          </span>
-        </div>
+    <section
+      className="relative isolate min-h-screen overflow-hidden px-5 pt-32 md:px-10 lg:px-16"
+      id="hello"
+    >
+      <div className="mx-auto grid min-h-[calc(100vh-8rem)] w-full max-w-7xl items-center gap-12 pb-16 lg:grid-cols-[1.15fr_0.85fr]">
+        <div>
+          <p className="hero-reveal mb-5 inline-flex opacity-0 font-wide text-xs  tracking-[0.18em] text-sky-200 md:text-sm mono-label">
+            Full-stack developer
+          </p>
 
-        <h1
-          className="font-bold uppercase text-8xl text-center bg-linear-60 from-40% from-blue-200 to-white bg-clip-text text-transparent"
-          style={{ marginTop: "150px", opacity: 0 }}
-          id="name"
-        >
-          Syed Ashiq
-        </h1>
-        <p
-          className="max-w-150 text-center text-gray-400 text-sm md:text-base mx-10"
-          id="about"
-          style={{ marginTop: "50px", opacity: 0 }}
-        >
-          I build modern web applications and AI-driven products, combining
-          clean design, robust engineering, and user-focused experiences.
-        </p>
+          <h1 className="hero-reveal max-w-4xl opacity-0 font-bold text-6xl  leading-[0.9] text-white sm:text-7xl lg:text-8xl">
+            Syed Ashiq
+          </h1>
+
+          <p className="hero-reveal mt-7 max-w-2xl opacity-0 text-base leading-7 text-white/68 md:text-lg">
+            I design and build fast, reliable web products across the stack:
+            polished React interfaces, pragmatic APIs, clean data models, and
+            production-minded deployment.
+          </p>
+
+          <div className="hero-reveal mt-9 flex flex-col gap-3 opacity-0 sm:flex-row">
+            <Link
+              href="#projects"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-sky-200 px-5 py-3 text-sm font-medium text-background transition hover:bg-white"
+            >
+              View projects
+              <FiArrowDownRight />
+            </Link>
+            <a
+              href="/syed-ashiq-resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm text-white/82 backdrop-blur transition hover:border-white/30 hover:bg-white/10"
+            >
+              Resume
+              <IoIosReturnRight size={20} />
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

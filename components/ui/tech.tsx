@@ -103,16 +103,32 @@ export const Techs = {
 const Tech = ({
   tech,
   big = false,
+  compact = false,
 }: {
   tech: keyof typeof Techs;
   big?: boolean;
+  compact?: boolean;
 }) => {
   const { icon: Icon, label } = Techs[tech];
 
   return (
-    <div className="text-gray-400 flex flex-col items-center text-center space-y-2">
-      <Icon className={cn("size-8 my-4", !big && "size-6 md:size-8 my-2")} />
-      <span className="text-xs hidden md:inline">{label}</span>
+    <div
+      className={cn(
+        "flex flex-col items-center space-y-2 text-center text-white/58",
+        compact &&
+          "rounded-lg border border-white/8 bg-background/45 px-2 py-3 text-white/70"
+      )}
+    >
+      <Icon
+        className={cn(
+          "size-8 my-4",
+          !big && "size-6 md:size-8 my-2",
+          compact && "my-0 size-5 md:size-6"
+        )}
+      />
+      <span className={cn("hidden text-xs md:inline", compact && "inline")}>
+        {label}
+      </span>
     </div>
   );
 };

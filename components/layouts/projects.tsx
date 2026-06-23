@@ -1,82 +1,48 @@
-"use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Project from "../ui/project";
-import { animate, onScroll, splitText } from "animejs";
-import { hide, show } from "@/lib/utils";
 
 const Projects = () => {
-  const didMount = useRef(false);
-
-  useEffect(() => {
-    if (didMount.current) return;
-
-    const { chars: heading } = splitText(`#projects-head`, {
-      words: false,
-      chars: true,
-      includeSpaces: true,
-    });
-
-    hide(heading);
-
-    onScroll({
-      target: "#projects",
-      enter: "top+=25% top-=10%",
-      leave: "top+=40% bottom-=20%",
-      sync: true,
-      onEnter: () => {
-        show(heading);
-      },
-      onLeave: () => {
-        hide(heading);
-      },
-      onLeaveBackward: () => {
-        const skills = document.getElementById("skills");
-        animate(document.documentElement, {
-          scrollTop: skills?.offsetTop,
-          duration: 1000,
-          ease: "inOutExpo",
-        });
-      },
-    });
-    didMount.current = true;
-  }, []);
   return (
-    <div
-      className="flex flex-col space-y-2 mx-5 sm:mx-auto my-20"
-      id="projects"
-    >
-      <h2
-        className="font-wide text-xl md:text-3xl sticky top-5 md:top-25 z-10 text-center md:text-left w-[min(92vw,1360px)] mx-auto"
-        id="projects-head"
-      >
-        Featured <span className="text-blue-200">Projects</span>
-      </h2>
-      <div className="h-auto mt-10 md:mt-90 space-y-90">
-        <Project
-          title="Web Engine"
-          description="A no-code website builder that enables users to create responsive websites through a visual drag-and-drop interface without writing code. Users can design, customize, preview, and export production-ready HTML, CSS, and JavaScript projects."
-          live="https://web-engine-wheat.vercel.app/"
-          source="https://github.com/Syed-Ashiq-AP/web-engine-main"
-          imageURL="/thumbnail/we.webp"
-          stack={["react", "tailwind", "ts", "mongo", "api"]}
-        />
-        <Project
-          title="CAREER CONSULTANT AI"
-          description="An AI-powered career guidance platform that provides personalized recommendations for courses, colleges, skills, and career paths based on student profiles, interests, and market trends."
-          live="https://career-consultant.vercel.app/"
-          source="https://github.com/Syed-Ashiq-AP/career"
-          imageURL="/thumbnail/cc.webp"
-          stack={["next", "tailwind", "ts", "mongo", "api"]}
-        />
-        <Project
-          title="HOSTEL MANAGEMENT SYSTEM"
-          description="A comprehensive hostel administration platform that streamlines room allocation, student management, maintenance requests, fee tracking, and daily hostel operations through a centralized dashboard."
-          imageURL="/thumbnail/hm.webp"
-          stack={["go", "java", "postres", "flutter", "react", "tailwind"]}
-          inDev
-        />
+    <section className="px-5 py-24 md:px-10 lg:px-16" id="projects">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 flex flex-col md:sticky md:top-25 gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="font-wide text-xs  tracking-[0.18em] text-sky-200">
+              Featured projects
+            </p>
+            <h2 className="mt-3 font-bold text-4xl  leading-none text-white md:text-6xl">
+              Recent builds
+            </h2>
+          </div>
+        </div>
+
+        <div className="h-[250vh] flex flex-col justify-between">
+          <Project
+            title="Web Engine"
+            description="A no-code website builder for designing, previewing, and exporting responsive HTML, CSS, and JavaScript projects through a visual drag-and-drop workflow."
+            live="https://web-engine-wheat.vercel.app/"
+            source="https://github.com/Syed-Ashiq-AP/web-engine-main"
+            imageURL="/thumbnail/we.webp"
+            stack={["react", "tailwind", "ts", "mongo", "api"]}
+          />
+          <Project
+            title="Career Consultant AI"
+            description="An AI-powered career guidance platform that recommends courses, colleges, skills, and career paths from student profiles, interests, and market context."
+            live="https://career-consultant.vercel.app/"
+            source="https://github.com/Syed-Ashiq-AP/career"
+            imageURL="/thumbnail/cc.webp"
+            stack={["next", "tailwind", "ts", "mongo", "api"]}
+          />
+          <Project
+            title="Hostel Management"
+            description="A hostel administration platform for room allocation, student management, maintenance requests, fee tracking, and daily operational workflows."
+            imageURL="/thumbnail/hm.webp"
+            stack={["go", "java", "postres", "flutter", "react", "tailwind"]}
+            inDev
+          />
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

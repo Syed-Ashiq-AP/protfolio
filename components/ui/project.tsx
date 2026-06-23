@@ -3,7 +3,6 @@ import { animate, onScroll } from "animejs";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { FaReact } from "react-icons/fa6";
 import { IoIosReturnRight } from "react-icons/io";
 import Tech, { Techs } from "./tech";
 
@@ -25,14 +24,17 @@ const Project = ({
   inDev?: boolean;
 }) => {
   const project = useRef<HTMLDivElement>(null);
-  const image = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    if (!image.current) return;
     if (!project.current) return;
-
     animate(project.current, {
-      scale: "0.99",
+      opacity: [0, 1],
+      translateY: [24, 0],
+      duration: 800,
+      ease: "outExpo",
+    });
+    animate(project.current, {
+      scale: "0.9",
       filter: "blur(4px)",
       ease: "linear",
       autoplay: onScroll({
@@ -41,89 +43,71 @@ const Project = ({
         sync: 0.25,
       }),
     });
-    animate(image.current, {
-      translateX: [image.current.getBoundingClientRect().width / 4, 0],
-      ease: "linear",
-      autoplay: onScroll({
-        enter: "bottom top",
-        leave: "top-=20 top",
-        sync: 0.25,
-      }),
-    });
   }, []);
 
   return (
-    <div className="flex items-center justify-center sticky top-20 md:top-40 lg:top-50 mb-40 w-[min(92vw,1360px)] mx-auto">
-      <div
-        className="border border-border/1 bg-card  rounded-xl shadow-md flex flex-col-reverse lg:grid lg:grid-cols-[1fr_60%] overflow-hidden h-[min(80vh,780px)] w-full"
-        ref={project}
-      >
-        <div className="flex flex-col p-4 lg:p-12 justify-between lg:space-y-8 flex-1">
-          <div className=" flex flex-col space-y-4 h-full">
-            <h3 className="font-bold text-xl lg:text-2xl tracking-wider">
+    <article
+      className="group grid overflow-hidden rounded-lg border sticky top-25 md:top-45 lg:top-55 border-white/10 bg-background opacity-0 shadow-2xl shadow-bold/20 lg:grid-cols-[0.95fr_1.2fr]"
+      ref={project}
+    >
+      <div className="flex min-h-full flex-col justify-between p-5 md:p-8">
+        <div>
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <h3 className="font-bold text-2xl  tracking-wide text-white md:text-3xl">
               {title}
             </h3>
-            <span className="text-gray-400 whitespace-pre-wrap leading-5.5 lg:leading-7 text-sm lg:text-base hidden lg:inline mb-12">
-              {description}
-            </span>
-            {inDev ? (
-              <span className="p-4 border bg-background rounded-xl text-center text-gray-400">
-                Under Development
+            {inDev && (
+              <span className="shrink-0 rounded-full border border-sky-200/25 bg-sky-200/10 px-3 py-1 text-xs text-sky-100">
+                In dev
               </span>
-            ) : (
-              <div className="flex justify-between">
-                {source && (
-                  <Link
-                    target="_blank"
-                    href={source}
-                    className="flex items-end gap-2 text-gray-500 hover:text-white transition-all"
-                  >
-                    <IoIosReturnRight size={28} />
-                    Source Code
-                  </Link>
-                )}
-                {live && (
-                  <Link
-                    target="_blank"
-                    href={live}
-                    className="flex items-end gap-2 text-gray-500 hover:text-white transition-all"
-                  >
-                    <IoIosReturnRight size={28} />
-                    Live Preview
-                  </Link>
-                )}
-              </div>
             )}
           </div>
 
-          <div className="flex flex-col space-y-4 lg:space-y-12 mt-8">
-            <div>
-              <span className=" text-gray-500 text-sm lg:text-base ">
-                Tech Stack
-              </span>
-              <div className="grid grid-cols-3 p-2 gap-4 lg:gap-8">
-                {stack.map((tech, i) => (
-                  <Tech tech={tech} key={i} />
-                ))}
-              </div>
-            </div>
+          <p className="text-sm leading-6 text-white/64 md:text-base hidden md:block">
+            {description}
+          </p>
+
+          <div className="mt-7 grid grid-cols-3 gap-3 sm:grid-cols-4">
+            {stack.map((tech) => (
+              <Tech tech={tech} key={tech} compact />
+            ))}
           </div>
         </div>
 
-        <div className="bg-background flex items-center justify-center overflow-hidden rounded-md  m-4 relative">
-          <div className="h-[70vh] lg:h-[90vh] aspect-video" ref={image}>
-            <Image
-              src={imageURL}
-              width={2800}
-              loading="eager"
-              height={1575}
-              className="aspect-video h-full"
-              alt={title}
-            />
-          </div>
+        <div className="mt-8 flex flex-wrap gap-3">
+          {source && (
+            <Link
+              target="_blank"
+              href={source}
+              className="inline-flex items-center gap-2 rounded-full border border-white/12 px-4 py-2 text-sm text-white/70 transition hover:border-white/30 hover:text-white"
+            >
+              <IoIosReturnRight size={20} />
+              Source
+            </Link>
+          )}
+          {live && (
+            <Link
+              target="_blank"
+              href={live}
+              className="inline-flex items-center gap-2 rounded-full bg-sky-200 px-4 py-2 text-sm text-background transition hover:bg-white"
+            >
+              <IoIosReturnRight size={20} />
+              Live
+            </Link>
+          )}
         </div>
       </div>
-    </div>
+
+      <div className="relative min-h-72 overflow-hidden border-t border-white/10 bg-background lg:min-h-120 lg:border-l lg:border-t-0">
+        <Image
+          src={imageURL}
+          fill
+          sizes="(min-width: 1024px) 54vw, 92vw"
+          className="object-cover object-center transition duration-700 group-hover:scale-[1.03]"
+          alt={title}
+        />
+      </div>
+    </article>
   );
 };
 
