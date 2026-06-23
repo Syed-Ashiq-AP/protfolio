@@ -63,21 +63,9 @@ const Project = ({
             <h3 className="font-bold text-xl lg:text-2xl tracking-wider">
               {title}
             </h3>
-            <span className="text-gray-400 whitespace-pre-wrap leading-5.5 lg:leading-7 text-sm lg:text-base hidden lg:inline">
+            <span className="text-gray-400 whitespace-pre-wrap leading-5.5 lg:leading-7 text-sm lg:text-base hidden lg:inline mb-12">
               {description}
             </span>
-          </div>
-          <div className="flex flex-col space-y-4 lg:space-y-12">
-            <div>
-              <span className=" text-gray-500 text-sm lg:text-base ">
-                Tech Stack
-              </span>
-              <div className="grid grid-cols-3 p-2 gap-4 lg:gap-8">
-                {stack.map((tech, i) => (
-                  <Tech tech={tech} key={i} />
-                ))}
-              </div>
-            </div>
             {inDev ? (
               <span className="p-4 border bg-background rounded-xl text-center text-gray-400">
                 Under Development
@@ -106,6 +94,19 @@ const Project = ({
                 )}
               </div>
             )}
+          </div>
+
+          <div className="flex flex-col space-y-4 lg:space-y-12 mt-8">
+            <div>
+              <span className=" text-gray-500 text-sm lg:text-base ">
+                Tech Stack
+              </span>
+              <div className="grid grid-cols-3 p-2 gap-4 lg:gap-8">
+                {stack.map((tech, i) => (
+                  <Tech tech={tech} key={i} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
