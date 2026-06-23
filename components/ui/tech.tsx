@@ -112,7 +112,7 @@ const Tech = ({
   return (
     <div className="text-gray-400 flex flex-col items-center text-center space-y-2">
       <Icon className={cn("size-8 my-4", !big && "size-6 md:size-8 my-2")} />
-      <span className="text-sm hidden md:inline">{label}</span>
+      <span className="text-xs hidden md:inline">{label}</span>
     </div>
   );
 };

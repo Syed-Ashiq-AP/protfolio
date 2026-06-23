@@ -5,8 +5,9 @@ import { TbBrandGithubFilled } from "react-icons/tb";
 import Social from "../ui/social";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
-const menu = ["Hello!", "Projects", "Expertise", "Services"];
+const menu = ["Hello!", "Expertise", "Projects"];
 
 const Header = () => {
   const enableUnderline = (i: number) => {
@@ -25,12 +26,10 @@ const Header = () => {
   const ObserverHello = useRef<ScrollObserver>(null);
   const ObserverProjects = useRef<ScrollObserver>(null);
   const ObserverSkills = useRef<ScrollObserver>(null);
-  const ObserverServices = useRef<ScrollObserver>(null);
 
   const [helloInView, setHelloInView] = useState(false);
   const [projectsInView, setProjectsInView] = useState(false);
   const [skillsInView, setSkillsInView] = useState(false);
-  const [servicessInView, setServicesInView] = useState(false);
 
   const didMount = useRef(false);
   useEffect(() => {
@@ -56,11 +55,6 @@ const Header = () => {
       target: "#skills",
       onEnter: () => setSkillsInView(true),
       onLeave: () => setSkillsInView(false),
-    });
-    ObserverServices.current = onScroll({
-      target: "#services",
-      onEnter: () => setServicesInView(true),
-      onLeave: () => setServicesInView(false),
     });
 
     didMount.current = true;
@@ -108,28 +102,20 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (projectsInView) {
-      enableUnderline(1);
-      disableUnderline(0);
-      disableUnderline(2);
-      disableUnderline(3);
-    } else if (helloInView) {
+    if (helloInView) {
       enableUnderline(0);
       disableUnderline(1);
       disableUnderline(2);
-      disableUnderline(3);
     } else if (skillsInView) {
-      enableUnderline(2);
-      disableUnderline(1);
+      enableUnderline(1);
       disableUnderline(0);
-      disableUnderline(3);
-    } else if (servicessInView) {
-      enableUnderline(3);
-      disableUnderline(1);
       disableUnderline(2);
+    } else if (projectsInView) {
+      enableUnderline(2);
       disableUnderline(0);
+      disableUnderline(1);
     }
-  }, [helloInView, projectsInView, skillsInView, servicessInView]);
+  }, [helloInView, projectsInView, skillsInView]);
 
   return (
     <div
@@ -137,10 +123,10 @@ const Header = () => {
       id="nav"
       style={{ top: "-85px", opacity: 0 }}
     >
-      <div className="hidden md:block">
+      <div className="hidden md:flex md:items-center">
         <Logo />
       </div>
-      <nav className="hidden md:block rounded-full border bg-white/1 backdrop-blur-lg px-12 pt-1 absolute top-4 w-min mx-auto left-0 right-0">
+      <nav className="hidden md:block rounded-full border bg-white/1 backdrop-blur-lg px-12 pt-1 absolute top-0 bottom-0 w-min h-min m-auto left-0 right-0">
         <ul className=" flex space-x-12 md:space-x-22 items-center justify-center p-2 text-sm md:text-base">
           {menu.map((item, i) => (
             <li
@@ -149,9 +135,8 @@ const Header = () => {
               onMouseEnter={() => {
                 if (
                   (i == 0 && helloInView) ||
-                  (i == 1 && projectsInView) ||
-                  (i == 2 && skillsInView) ||
-                  (i == 3 && servicessInView)
+                  (i == 1 && skillsInView) ||
+                  (i == 2 && projectsInView)
                 )
                   return;
                 enableUnderline(i);
@@ -159,9 +144,8 @@ const Header = () => {
               onMouseLeave={() => {
                 if (
                   (i == 0 && helloInView) ||
-                  (i == 1 && projectsInView) ||
-                  (i == 2 && skillsInView) ||
-                  (i == 3 && servicessInView)
+                  (i == 1 && skillsInView) ||
+                  (i == 2 && projectsInView)
                 )
                   return;
                 disableUnderline(i);
@@ -176,7 +160,7 @@ const Header = () => {
           ))}
         </ul>
       </nav>
-      <div className=" space-x-4 hidden md:flex">
+      <div className=" space-x-4 hidden md:flex md:items-center">
         <Social
           icon={TbBrandGithubFilled}
           link="https://github.com/Syed-Ashiq-AP"
@@ -185,6 +169,11 @@ const Header = () => {
           icon={FaLinkedinIn}
           link="https://www.linkedin.com/in/syed-ashiq-1172b6271/"
         />
+        <Link href={"/syed-ashiq-resume.pdf"} target="_blank">
+          <div className="px-3 py-2 rounded-full border bg-white/1 backdrop-blur-lg transition-all hover:bg-white/5 cursor-pointer">
+            Resume
+          </div>
+        </Link>
       </div>
     </div>
   );

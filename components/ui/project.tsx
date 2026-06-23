@@ -14,6 +14,7 @@ const Project = ({
   live,
   imageURL,
   stack,
+  inDev = false,
 }: {
   title: string;
   description: string;
@@ -21,6 +22,7 @@ const Project = ({
   live?: string;
   imageURL: string;
   stack: (keyof typeof Techs)[];
+  inDev?: boolean;
 }) => {
   const project = useRef<HTMLDivElement>(null);
   const image = useRef<HTMLImageElement>(null);
@@ -51,58 +53,64 @@ const Project = ({
   }, []);
 
   return (
-    <div className="flex items-center justify-center sticky top-20 md:top-50 mb-40">
+    <div className="flex items-center justify-center sticky top-20 md:top-40 lg:top-50 mb-40 w-[min(92vw,1360px)] mx-auto">
       <div
-        className="border border-border/1 bg-card  rounded-xl shadow-md flex flex-col-reverse md:grid md:grid-cols-[1fr_60%] overflow-hidden h-[min(80vh,780px)] w-[min(92vw,1360px)]"
+        className="border border-border/1 bg-card  rounded-xl shadow-md flex flex-col-reverse lg:grid lg:grid-cols-[1fr_60%] overflow-hidden h-[min(80vh,780px)] w-full"
         ref={project}
       >
-        <div className="flex flex-col p-4 md:p-12 justify-between space-y-8 flex-1">
+        <div className="flex flex-col p-4 lg:p-12 justify-between lg:space-y-8 flex-1">
           <div className=" flex flex-col space-y-4 h-full">
-            <h3 className="font-bold text-xl md:text-2xl tracking-wider">
+            <h3 className="font-bold text-xl lg:text-2xl tracking-wider">
               {title}
             </h3>
-            <span className="text-gray-400 whitespace-pre-wrap leading-5.5 md:leading-7 text-sm md:text-base hidden md:inline">
+            <span className="text-gray-400 whitespace-pre-wrap leading-5.5 lg:leading-7 text-sm lg:text-base hidden lg:inline">
               {description}
             </span>
           </div>
-          <div className="flex flex-col space-y-4 md:space-y-12">
+          <div className="flex flex-col space-y-4 lg:space-y-12">
             <div>
-              <span className=" text-gray-500 text-sm md:text-base ">
+              <span className=" text-gray-500 text-sm lg:text-base ">
                 Tech Stack
               </span>
-              <div className="grid grid-cols-3 p-4 gap-2">
+              <div className="grid grid-cols-3 p-2 gap-4 lg:gap-8">
                 {stack.map((tech, i) => (
                   <Tech tech={tech} key={i} />
                 ))}
               </div>
             </div>
-            <div className="flex justify-between">
-              {source && (
-                <Link
-                  target="_blank"
-                  href={source}
-                  className="flex items-end gap-2 text-gray-500 hover:text-white transition-all"
-                >
-                  <IoIosReturnRight size={28} />
-                  Source Code
-                </Link>
-              )}
-              {live && (
-                <Link
-                  target="_blank"
-                  href={live}
-                  className="flex items-end gap-2 text-gray-500 hover:text-white transition-all"
-                >
-                  <IoIosReturnRight size={28} />
-                  Live Preview
-                </Link>
-              )}
-            </div>
+            {inDev ? (
+              <span className="p-4 border bg-background rounded-xl text-center text-gray-400">
+                Under Development
+              </span>
+            ) : (
+              <div className="flex justify-between">
+                {source && (
+                  <Link
+                    target="_blank"
+                    href={source}
+                    className="flex items-end gap-2 text-gray-500 hover:text-white transition-all"
+                  >
+                    <IoIosReturnRight size={28} />
+                    Source Code
+                  </Link>
+                )}
+                {live && (
+                  <Link
+                    target="_blank"
+                    href={live}
+                    className="flex items-end gap-2 text-gray-500 hover:text-white transition-all"
+                  >
+                    <IoIosReturnRight size={28} />
+                    Live Preview
+                  </Link>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
         <div className="bg-background flex items-center justify-center overflow-hidden rounded-md  m-4 relative">
-          <div className="h-[70vh] md:h-[90vh] aspect-video" ref={image}>
+          <div className="h-[70vh] lg:h-[90vh] aspect-video" ref={image}>
             <Image
               src={imageURL}
               width={2800}

@@ -78,7 +78,7 @@ const Cursor = () => {
         borderRadius: "calc(infinity * 1px)",
       }}
       className={cn(
-        "bg-blue-400/90 shadow-[0_0_25px_rgba(0,0,0,0.25)] shadow-blue-500 fixed z-5000 h-5 pointer-events-none",
+        "bg-blue-400/90 shadow-[0_0_25px_rgba(0,0,0,0.25)] shadow-blue-500 fixed h-5 pointer-events-none z-50000",
       )}
     ></div>
   );
