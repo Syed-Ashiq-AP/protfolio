@@ -17,9 +17,13 @@ const Footer = () => {
         <Link href={"https://github.com/Syed-Ashiq-AP"} target="_blank">
           Github
         </Link>
-        <Link href={"/syed-ashiq-resume.pdf"} target="_blank">
+        <a
+          href="/syed-ashiq-resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Resume
-        </Link>
+        </a>
       </div>
     </div>
   );

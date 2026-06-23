@@ -5,7 +5,6 @@ import { TbBrandGithubFilled } from "react-icons/tb";
 import Social from "../ui/social";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 
 const menu = ["Hello!", "Expertise", "Projects"];
 
@@ -72,14 +71,6 @@ const Header = () => {
         });
         break;
       case 1:
-        const projects = document.getElementById("projects");
-        animate(document.documentElement, {
-          scrollTop: projects?.offsetTop,
-          duration: 1000,
-          ease: "inOutExpo",
-        });
-        break;
-      case 2:
         const skills = document.getElementById("skills");
         animate(document.documentElement, {
           scrollTop: skills?.offsetTop,
@@ -87,10 +78,10 @@ const Header = () => {
           ease: "inOutExpo",
         });
         break;
-      case 3:
-        const services = document.getElementById("services");
+      case 2:
+        const projects = document.getElementById("projects");
         animate(document.documentElement, {
-          scrollTop: services?.offsetTop,
+          scrollTop: projects?.offsetTop,
           duration: 1000,
           ease: "inOutExpo",
         });
@@ -169,11 +160,14 @@ const Header = () => {
           icon={FaLinkedinIn}
           link="https://www.linkedin.com/in/syed-ashiq-1172b6271/"
         />
-        <Link href={"/syed-ashiq-resume.pdf"} target="_blank">
-          <div className="px-3 py-2 rounded-full border bg-white/1 backdrop-blur-lg transition-all hover:bg-white/5 cursor-pointer">
-            Resume
-          </div>
-        </Link>
+        <a
+          href="/syed-ashiq-resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-3 py-2 rounded-full border bg-white/1 backdrop-blur-lg transition-all hover:bg-white/5 cursor-pointer"
+        >
+          Resume
+        </a>
       </div>
     </div>
   );

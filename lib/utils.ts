@@ -6,6 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 export const show = (chars: HTMLElement[]) => {
+  if (!chars) return;
   animate(chars, {
     opacity: 1,
     rotateX: 0,
@@ -15,6 +16,7 @@ export const show = (chars: HTMLElement[]) => {
 };
 
 export const hide = (chars: HTMLElement[]) => {
+  if (!chars) return;
   animate(chars, {
     opacity: 0,
     rotateX: 90,
