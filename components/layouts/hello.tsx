@@ -1,6 +1,6 @@
 "use client";
 import { hide, show } from "@/lib/utils";
-import { animate, splitText, stagger } from "animejs";
+import { animate, onScroll, splitText, stagger } from "animejs";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const Hello = () => {
@@ -85,62 +85,98 @@ const Hello = () => {
       duration: 1500,
     });
 
+    animate(["#name", slideContainer.current], {
+      marginTop: [0, "150px"],
+      opacity: [1, 0],
+      ease: "ease",
+      autoplay: onScroll({
+        target: "#hello-scroll",
+        enter: "top top+=10%",
+        leave: "top top+=25%",
+        sync: true,
+      }),
+    });
+
+    animate("#about", {
+      marginTop: [0, "50px"],
+      opacity: [1, 0],
+      ease: "ease",
+      autoplay: onScroll({
+        target: "#hello-scroll",
+        enter: "top top+=10%",
+        leave: "top top+=25%",
+        sync: true,
+        onLeaveForward: () => {
+          setTimeout(() => {
+            const skills = document.getElementById("skills");
+            animate(document.documentElement, {
+              scrollTop: skills?.offsetTop,
+              duration: 1000,
+              ease: "inOutExpo",
+            });
+          }, 200);
+        },
+      }),
+    });
+
     didMount.current = true;
   }, []);
 
   return (
-    <div
-      className="flex flex-col space-y-2 justify-center items-center h-screen overflow-x-hidden"
-      id="hello"
-    >
+    <div className=" relative top-0 h-screen" id="hello">
       <div
-        className="font-wide flex space-x-2 text-xs md:text-base"
-        ref={slideContainer}
+        className="flex flex-col space-y-2 justify-center items-center sticky top-0 left-0 right-0 mx-auto h-screen overflow-x-hidden"
+        id="hello-scroll"
       >
-        <span>FULL-STACK DEVELOPER </span>
-        <span className=" text-center justify-center pl-2 relative block text-blue-200">
-          <span
-            className=" transition-all absolute left-0 top-0 w-max opacity-0"
-            id="slogan-0"
-          >
-            & UI/UX
+        <div
+          className="font-wide flex space-x-2 text-xs md:text-base"
+          ref={slideContainer}
+        >
+          <span>FULL-STACK DEVELOPER </span>
+          <span className=" text-center justify-center pl-2 relative block text-blue-200">
+            <span
+              className=" transition-all absolute left-0 top-0 w-max opacity-0"
+              id="slogan-0"
+            >
+              & UI/UX
+            </span>
+            <span
+              className=" transition-all absolute left-0 top-0 w-max opacity-0"
+              id="slogan-1"
+            >
+              & WEB APPS
+            </span>
+            <span
+              className=" transition-all absolute left-0 top-0 w-max opacity-0"
+              id="slogan-2"
+            >
+              & AI PRODUCTS
+            </span>
+            <span
+              className=" transition-all absolute left-0 top-0 w-max opacity-0"
+              id="slogan-3"
+            >
+              & MOTION DESIGN
+            </span>
           </span>
-          <span
-            className=" transition-all absolute left-0 top-0 w-max opacity-0"
-            id="slogan-1"
-          >
-            & WEB APPS
-          </span>
-          <span
-            className=" transition-all absolute left-0 top-0 w-max opacity-0"
-            id="slogan-2"
-          >
-            & AI PRODUCTS
-          </span>
-          <span
-            className=" transition-all absolute left-0 top-0 w-max opacity-0"
-            id="slogan-3"
-          >
-            & MOTION DESIGN
-          </span>
-        </span>
-      </div>
+        </div>
 
-      <h1
-        className="font-bold uppercase text-8xl text-center bg-linear-60 from-40% from-blue-200 to-white bg-clip-text text-transparent"
-        style={{ marginTop: "150px", opacity: 0 }}
-        id="name"
-      >
-        Syed Ashiq
-      </h1>
-      <p
-        className="max-w-150 text-center text-gray-400 text-sm md:text-base mx-10"
-        id="about"
-        style={{ marginTop: "50px", opacity: 0 }}
-      >
-        I build modern web applications and AI-driven products, combining clean
-        design, robust engineering, and user-focused experiences.
-      </p>
+        <h1
+          className="font-bold uppercase text-8xl text-center bg-linear-60 from-40% from-blue-200 to-white bg-clip-text text-transparent"
+          style={{ marginTop: "150px", opacity: 0 }}
+          id="name"
+        >
+          Syed Ashiq
+        </h1>
+        <p
+          className="max-w-150 text-center text-gray-400 text-sm md:text-base mx-10"
+          id="about"
+          style={{ marginTop: "50px", opacity: 0 }}
+        >
+          I build modern web applications and AI-driven products, combining
+          clean design, robust engineering, and user-focused experiences.
+        </p>
+      </div>
     </div>
   );
 };

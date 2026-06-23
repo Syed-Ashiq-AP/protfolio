@@ -126,6 +126,43 @@ const Skills = () => {
 
     setUp();
 
+    const { chars: heading } = splitText(`#skills-head`, {
+      words: false,
+      chars: true,
+      includeSpaces: true,
+    });
+
+    hide(heading);
+
+    onScroll({
+      target: "#skills",
+      enter: "top+=25% top-=10%",
+      leave: "top+=25% bottom-=25%",
+      sync: true,
+      onEnter: () => {
+        show(heading);
+      },
+      onLeave: () => {
+        hide(heading);
+      },
+      onLeaveBackward: () => {
+        const hello = document.getElementById("hello");
+        animate(document.documentElement, {
+          scrollTop: hello?.offsetTop,
+          duration: 1000,
+          ease: "inOutExpo",
+        });
+      },
+      onLeaveForward: () => {
+        const projects = document.getElementById("projects");
+        animate(document.documentElement, {
+          scrollTop: projects?.offsetTop,
+          duration: 1000,
+          ease: "inOutExpo",
+        });
+      },
+    });
+
     didMount.current = true;
   }, []);
 
@@ -157,7 +194,10 @@ const Skills = () => {
       className="flex flex-col space-y-2 mx-5 xl:mx-70 my-20 relative h-[375dvh] md:h-[300dvh]"
       id="skills"
     >
-      <h2 className="font-wide text-xl md:text-3xl sticky top-25 z-10 text-center md:text-left my-12">
+      <h2
+        className="font-wide text-xl md:text-3xl sticky top-25 z-10 text-center md:text-left my-12"
+        id="skills-head"
+      >
         Technical <span className="text-blue-200">Expertise</span>
       </h2>
       <div className="flex flex-col space-y-20 sticky top-0 w-full h-screen items-center justify-center">

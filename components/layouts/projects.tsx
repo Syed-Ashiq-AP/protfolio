@@ -1,14 +1,54 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Project from "../ui/project";
+import { animate, onScroll, splitText } from "animejs";
+import { hide, show } from "@/lib/utils";
 
 const Projects = () => {
+  const didMount = useRef(false);
+
+  useEffect(() => {
+    if (didMount.current) return;
+
+    const { chars: heading } = splitText(`#projects-head`, {
+      words: false,
+      chars: true,
+      includeSpaces: true,
+    });
+
+    hide(heading);
+
+    onScroll({
+      target: "#projects",
+      enter: "top+=25% top-=10%",
+      leave: "top+=40% bottom-=20%",
+      sync: true,
+      onEnter: () => {
+        show(heading);
+      },
+      onLeave: () => {
+        hide(heading);
+      },
+      onLeaveBackward: () => {
+        const skills = document.getElementById("skills");
+        animate(document.documentElement, {
+          scrollTop: skills?.offsetTop,
+          duration: 1000,
+          ease: "inOutExpo",
+        });
+      },
+    });
+    didMount.current = true;
+  }, []);
   return (
     <div
       className="flex flex-col space-y-2 mx-5 sm:mx-auto my-20"
       id="projects"
     >
-      <h2 className="font-wide text-xl md:text-3xl sticky top-5 md:top-25 z-10 text-center md:text-left w-[min(92vw,1360px)] mx-auto">
+      <h2
+        className="font-wide text-xl md:text-3xl sticky top-5 md:top-25 z-10 text-center md:text-left w-[min(92vw,1360px)] mx-auto"
+        id="projects-head"
+      >
         Featured <span className="text-blue-200">Projects</span>
       </h2>
       <div className="h-auto mt-10 md:mt-90 space-y-90">
