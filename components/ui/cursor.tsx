@@ -1,0 +1,66 @@
+"use client";
+import { cn } from "@/lib/utils";
+import { animate } from "animejs";
+import Image from "next/image";
+import React, { useEffect, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
+
+const Cursor = () => {
+  const cursor = useRef<HTMLDivElement>(null);
+
+  const didMount = useRef(false);
+
+  useEffect(() => {
+    if (didMount.current) return;
+    const moveCursor = (e: MouseEvent) => {
+      if (!cursor.current) return;
+      // cursor.current.style.transform="translate(`
+      animate(cursor.current, {
+        left: e.clientX,
+        top: e.clientY,
+        duration: 100,
+        ease: "out(2)",
+      });
+    };
+
+    document.addEventListener("mousemove", moveCursor);
+
+    didMount.current = true;
+    return () => {
+      document.removeEventListener("mousemove", moveCursor);
+    };
+  }, []);
+
+  const isMobile = useMediaQuery({ maxWidth: "768px" });
+  if (isMobile) return;
+  return (
+    <div
+      ref={cursor}
+      className={cn("pointer-events-none z-50000 fixed -top-12 -left-12")}
+      dangerouslySetInnerHTML={{
+        __html: `<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_106_2)">
+<path d="M8.75418 20L5.62291 4.0409L20 11.9182L12.9181 13.9727L8.75418 20Z" fill="black"/>
+<path d="M8.75418 20L5.62291 4.0409L20 11.9182L12.9181 13.9727L8.75418 20Z" stroke="white"/>
+</g>
+<defs>
+<filter id="filter0_d_106_2" x="2.92491" y="2.09062" width="20.3719" height="22.1734" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="1"/>
+<feGaussianBlur stdDeviation="1"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_106_2"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_106_2" result="shape"/>
+</filter>
+</defs>
+</svg>
+
+`,
+      }}
+    ></div>
+  );
+};
+
+export default Cursor;

@@ -51,13 +51,12 @@ const Hello = () => {
               <FiArrowDownRight />
             </Link>
             <a
-              href="/syed-ashiq-resume.pdf"
+              href="/Syed-Ashiq-Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm text-white/82 backdrop-blur transition hover:border-white/30 hover:bg-white/10"
             >
-              Resume
-              <IoIosReturnRight size={20} />
+              Résumé ↓
             </a>
           </div>
         </div>

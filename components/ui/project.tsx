@@ -47,7 +47,7 @@ const Project = ({
 
   return (
     <article
-      className="group grid overflow-hidden rounded-lg border sticky top-25 md:top-45 lg:top-55 border-white/10 bg-background opacity-0 shadow-2xl shadow-bold/20 lg:grid-cols-[0.95fr_1.2fr]"
+      className="group grid overflow-hidden rounded-lg border sticky top-25 md:top-45 lg:top-[30dvh]  border-white/10 bg-background opacity-0 shadow-2xl shadow-bold/20 lg:grid-cols-[0.95fr_1.2fr]"
       ref={project}
     >
       <div className="flex min-h-full flex-col justify-between p-5 md:p-8">
@@ -102,8 +102,8 @@ const Project = ({
         <Image
           src={imageURL}
           fill
-          sizes="(min-width: 1024px) 54vw, 92vw"
-          className="object-cover object-center transition duration-700 group-hover:scale-[1.03]"
+          sizes="(min-width: 1846px) 54vw, 92vw"
+          className="object-cover object-center transition duration-700 group-hover:scale-[1.03] "
           alt={title}
         />
       </div>

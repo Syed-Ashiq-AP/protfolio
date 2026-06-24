@@ -48,7 +48,11 @@ const Skills = () => {
   }, []);
 
   return (
-    <section className="px-5 py-24 md:px-10 lg:px-16" id="skills" ref={section}>
+    <section
+      className="px-5 py-24 md:px-10 lg:px-16 min-h-screen"
+      id="skills"
+      ref={section}
+    >
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>

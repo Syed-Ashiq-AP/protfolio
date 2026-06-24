@@ -3,6 +3,7 @@ import "./globals.css";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/layouts/header";
 import Footer from "@/components/layouts/footer";
+import Cursor from "@/components/ui/cursor";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -63,6 +64,7 @@ export default function RootLayout({
       className={`h-full antialiased ${display.variable} ${mono.variable}`}
     >
       <body className="min-h-full flex flex-col">
+        <Cursor />
         <Header />
         {children}
         <Footer />

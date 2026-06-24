@@ -84,7 +84,7 @@
     );
   }
   body {
-    @apply text-foreground font-normal flex flex-col items-stretch bg-background;
+    @apply text-foreground font-normal flex flex-col items-stretch bg-background **:cursor-none! **:[@media(hover:none)]:cursor-auto!;
   }
   .mono-label {
     font-family: var(--font-mono);
