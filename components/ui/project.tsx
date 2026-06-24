@@ -40,7 +40,7 @@ const Project = ({
       autoplay: onScroll({
         enter: "top top",
         leave: "top-=20 top",
-        sync: 0.25,
+        sync: true,
       }),
     });
   }, []);
